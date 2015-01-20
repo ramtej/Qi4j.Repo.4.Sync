@@ -1,0 +1,17 @@
+description = "Qi4j Apache Camel integration"
+
+jar { manifest { name = "Qi4j - Apache Camel" } }
+
+dependencies {
+
+  compile project(":org.qi4j.core:org.qi4j.core.bootstrap")
+  compile project(":org.qi4j.libraries:org.qi4j.library.fileconfig")
+  compile libraries.camel
+
+  testCompile project(":org.qi4j.core:org.qi4j.core.testsupport")
+
+  testRuntime project(":org.qi4j.core:org.qi4j.core.runtime")
+  testRuntime libraries.logback
+
+}
+

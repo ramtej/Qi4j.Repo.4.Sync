@@ -17,8 +17,8 @@ apply from: 'maven-compat.gradle'
 apply plugin: 'project-report'
 apply from: 'libraries.gradle'
 
-targetCompatibility = "1.7"
-sourceCompatibility = "1.7"
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
 
 // Collect the modules that fulfills the Release Criteria.
 project.ext {
@@ -179,6 +179,11 @@ allprojects {
     apply plugin: 'osgi'
     apply plugin: VersionClass
     apply plugin: AsciidocBuildInfo
+
+      jacoco {
+              toolVersion = "0.7.0.201403182114"
+          }
+
 
 //    if( name == "org.qi4j.core.runtime" )
 //    {
@@ -343,7 +348,7 @@ configurations {
   jacoco
 }
 dependencies {
-  jacoco 'org.jacoco:org.jacoco.ant:0.6.4.201312101107'
+  jacoco 'org.jacoco:org.jacoco.ant:0.7.1.201405082137'
 }
 // Generate a global code codeverage report
 task coverageReport {
@@ -650,5 +655,5 @@ task release {
 //  2) /gradlew.bat which is the windows bat script for for executing builds
 //  3) /wrapper which is a directory named by the "jarPath" config which contains other needed files.
 task wrapper( type: Wrapper ) {
-  gradleVersion = '1.11'
+  gradleVersion = '1.12'
 }

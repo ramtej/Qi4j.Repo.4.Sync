@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import org.qi4j.api.composite.Composite;
+import org.qi4j.api.geometry.TPoint;
 import org.qi4j.api.property.Property;
 import org.qi4j.api.query.Query;
 import org.qi4j.api.query.QueryExecutionException;
@@ -34,7 +35,7 @@ import org.qi4j.spi.query.QuerySource;
 /**
  * Default implementation of {@link org.qi4j.api.query.Query}.
  */
-/* package */ class QueryImpl<T>
+/* package */ public class QueryImpl<T>
     implements Query<T>
 {
     private static final long serialVersionUID = 1L;
@@ -104,6 +105,24 @@ import org.qi4j.spi.query.QuerySource;
         else
         {
             orderBySegments = Iterables.append( new OrderBy( QueryExpressions.property( property ), order ), orderBySegments );
+        }
+        return this;
+    }
+
+    @Override
+    public Query<T> orderBy( final Property<?> property, TPoint centre, final OrderBy.Order order )
+    {
+
+        OrderBy orderBy = new OrderBy( QueryExpressions.property( property ), order );
+        orderBy.setCentre(centre);
+
+        if( orderBySegments == null )
+        {
+            orderBySegments = Iterables.iterable( orderBy );
+        }
+        else
+        {
+            orderBySegments = Iterables.append( orderBy, orderBySegments );
         }
         return this;
     }

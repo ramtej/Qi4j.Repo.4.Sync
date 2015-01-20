@@ -17,10 +17,6 @@
 
 package org.qi4j.library.rest.client.api;
 
-import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
-import java.util.HashMap;
-import java.util.Map;
 import org.qi4j.api.injection.scope.Uses;
 import org.qi4j.api.util.Classes;
 import org.qi4j.library.rest.client.spi.NullResponseHandler;
@@ -31,16 +27,16 @@ import org.qi4j.library.rest.common.link.Link;
 import org.qi4j.library.rest.common.link.LinksUtil;
 import org.restlet.Request;
 import org.restlet.Response;
-import org.restlet.data.ChallengeResponse;
-import org.restlet.data.ChallengeScheme;
-import org.restlet.data.MediaType;
-import org.restlet.data.Method;
-import org.restlet.data.Reference;
-import org.restlet.data.Status;
+import org.restlet.data.*;
 import org.restlet.representation.EmptyRepresentation;
 import org.restlet.representation.ObjectRepresentation;
 import org.restlet.resource.ResourceException;
 import org.restlet.security.User;
+
+import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Client-side context resources
@@ -466,16 +462,26 @@ public class ContextResourceClient
             if( response.getEntity() != null )
             {
                 String text = response.getEntityAsText();
-                throw new ResourceException( response.getStatus().getCode(), response.getStatus()
-                    .getName(), text, response.getRequest().getResourceRef().toUri().toString() );
+                // throw new ResourceException( response.getStatus().getCode(), response.getStatus()
+                //     .getName(), text, response.getRequest().getResourceRef().toUri().toString() );
+
+                throw new ResourceException( response.getStatus().getCode(), response.getStatus().getDescription()
+                     , text, response.getRequest().getResourceRef().toUri().toString() );
             }
             else
             {
-                throw new ResourceException( response.getStatus().getCode(), response.getStatus()
-                    .getName(), response.getStatus().getDescription(), response.getRequest()
-                    .getResourceRef()
-                    .toUri()
-                    .toString() );
+//                throw new ResourceException( response.getStatus().getCode(), response.getStatus()
+//                    .getName(), response.getStatus().getDescription(), response.getRequest()
+//                    .getResourceRef()
+//                    .toUri()
+//                    .toString() );
+
+                throw new ResourceException( response.getStatus().getCode(), response.getStatus().getDescription(),
+                        response.getStatus().getDescription(), response.getRequest()
+                        .getResourceRef()
+                        .toUri()
+                        .toString() );
+
             }
         }
     }

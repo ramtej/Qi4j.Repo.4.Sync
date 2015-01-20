@@ -17,18 +17,12 @@
 
 package org.qi4j.library.rest.client.requestwriter;
 
-import java.io.IOException;
-import java.io.Writer;
 import org.qi4j.api.injection.scope.Service;
 import org.qi4j.api.injection.scope.Structure;
 import org.qi4j.api.property.PropertyDescriptor;
 import org.qi4j.api.property.StateHolder;
 import org.qi4j.api.service.qualifier.Tagged;
-import org.qi4j.api.value.ValueComposite;
-import org.qi4j.api.value.ValueDescriptor;
-import org.qi4j.api.value.ValueSerialization;
-import org.qi4j.api.value.ValueSerializationException;
-import org.qi4j.api.value.ValueSerializer;
+import org.qi4j.api.value.*;
 import org.qi4j.library.rest.client.spi.RequestWriter;
 import org.qi4j.spi.Qi4jSPI;
 import org.restlet.Request;
@@ -39,6 +33,9 @@ import org.restlet.data.Reference;
 import org.restlet.engine.io.WriterOutputStream;
 import org.restlet.representation.WriterRepresentation;
 import org.restlet.resource.ResourceException;
+
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  * Request writer for ValueComposites. Transfers value state to request reference as query parameters or JSON entity
@@ -98,7 +95,7 @@ public class ValueCompositeRequestWriter
                     throws IOException
                 {
                    setCharacterSet( CharacterSet.UTF_8 );
-                   valueSerializer.serialize( valueObject, new WriterOutputStream( writer ) );
+                   valueSerializer.serialize( valueObject, new WriterOutputStream( writer, CharacterSet.UTF_8 ) );
                 }
             });
          }

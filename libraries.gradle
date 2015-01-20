@@ -1,5 +1,5 @@
 // Versions of Dependencies;
-def asmVersion = '4.2'
+def asmVersion = '5.0.3'
 def beanshellVersion = '2.0b4'
 def bonecpVersion = '0.8.0.RELEASE'
 def bouncyVersion = '1.50'
@@ -8,11 +8,13 @@ def commonsCodecVersion = '1.8'
 def commonsDbcpVersion = '1.4' // Should be moved to org.apache.tomcat:tomcat-jdbc:8.0.8
 def commonsIoVersion = '2.4'
 def commonsLangVersion = '2.6'
+def ctsVersion = '1.3.3'
+def geojsonjacksonVersion = '1.1'
 def cxfVersion = '2.5.6' // 2.7.11 Unable to resolve dependencies! - 3.0.0 exists
 def derbyVersion = '10.10.2.0'
 def dnsJavaVersion = '2.1.6'
 def ehcacheVersion = '2.8.3'
-def elasticsearchVersion = '1.2.1'
+def elasticsearchVersion = '1.4.1'
 def freemarkerVersion = '2.3.20'
 def gaeVersion = '1.8.8'
 def groovyVersion = '2.3.2'
@@ -33,6 +35,7 @@ def jodaMoneyVersion = '0.9.1'
 def jodaTimeVersion = '2.3'
 def jrubyVersion = '1.7.8' // 1.7.12 - Fails to run!
 def jtaVersion = '1.1'
+def jtsVersion = '1.11'
 def leveldbVersion = '0.7'
 def leveldbJniVersion = '1.8'
 def liquibaseVersion = '3.2.0'
@@ -47,7 +50,7 @@ def osgiVersion = '4.2.0' // 4.3.0 Fails to compile! - 5.0.0 exists
 def pdfboxVersion = '1.8.5'
 def postgresqlVersion = '9.3-1101-jdbc4'
 def prefuseVersion = '0.21'
-def restletVersion = '2.0.15' // 2.2.1 Fails to compile!
+def restletVersion = '2.2.1' // '2.0.15' // 2.2.1 Fails to compile!
 def rdfVersion = '2.7.9'
 def riakVersion = '1.4.4'
 def scalaVersion = '2.11.1'
@@ -58,6 +61,7 @@ def sleepycatVersion = '5.0.73'
 def slf4jVersion = '1.7.7'
 def solrVersion = "1.4.1" // 4.8.1 Fails to compile!
 def springVersion = '3.2.6.RELEASE' // 4.0.5.RELEASE Fails to compile!
+def spatial4jVersion = '0.4'
 def spymemcachedVersion = '2.11.3'
 def sqliteVersion = '3.7.2'
 def strutsVersion = '2.3.15.3' // 2.3.16.3 Fails to compile!
@@ -79,11 +83,160 @@ def testNgVersion = '6.8.8'
 def restAssuredVersion= '2.3.2'
 def xmlunitVersion = '1.5'
 
+
+// -- DIRTY START ----
+
+def vaadinVersion = '7.1.13'
+def amazonawsVersion = '1.7.9'
+def mandrilllutungVersion = '0.0.4'
+def resteasyVersion = '3.0.8.Final'
+def yogaVersion =  '1.0.5'
+def jmockitVersion = '1.8'
+def restassuredVersion = '2.3.2'
+def restliVersion = '1.15.18'
+def scribeVersion = '1.3.5'
+def nimbusJoseJWTVersion = '2.22.1'
+def camelVersion = '2.12.2'
+def reflectionsVersion = '0.9.9-RC1'
+
+
+// -- DIRTY .. and never finisches ----
+
+
+
+
+
+
+
+
 // build a map of the dependency artifacts to use.  Allows centralized definition of the version of artifacts to
 // use.  In that respect it serves a role similar to <dependencyManagement> in Maven
 
 rootProject.ext {
   libraries = [
+
+        // what is that ?
+          additional_libs: [
+		            "org.reflections.reflections:$reflectionsVersion"
+         ],
+/**
+            geojackson :   [
+
+                    "de.grundid.opendatalab:geojson-jackson:$geojsonjacksonVersion"
+            ],
+*/
+
+            // OAuth Scribe-Java
+            scribe: [
+                    "org.scribe:scribe:$scribeVersion"
+            ],
+
+            // OAuth Scribe-Java
+            nimbusJoseJWT: [
+                    "com.nimbusds:nimbus-jose-jwt:$nimbusJoseJWTVersion"
+            ],
+
+
+            // Camel (http://mvnrepository.com/artifact/org.apache.camel)
+            camel: [
+                    "org.apache.camel:camel-core:$camelVersion",
+                    "org.apache.camel:camel-test:$camelVersion",
+                    "org.apache.camel:camel-spring:$camelVersion",
+                    "org.apache.camel:camel-jms:$camelVersion",
+                    "org.apache.camel:camel-cxf:$camelVersion",
+         //           "org.apache.camel:camel-jaxb:$camelVersion",
+         //           "org.apache.camel:camel-jetty:$camelVersion",
+         //           "org.apache.camel:camel-http:$camelVersion",
+         //           "org.apache.camel:camel-juel:$camelVersion",
+         //           "org.apache.camel:camel-mail:$camelVersion",
+         //           "org.apache.camel:camel-jetty:$camelVersion",
+         //           "org.apache.camel:camel-velocity:$camelVersion",
+         //           "org.apache.camel:camel-servlet:$camelVersion",
+         //           "org.apache.camel:camel-blueprint:$camelVersion",
+         //           "org.apache.camel:camel-mina:$camelVersion",
+                    "org.apache.camel:camel-stream:$camelVersion",
+                    "org.apache.camel:camel-mail:$camelVersion"
+            ],
+
+
+            vaadin: [
+
+                    "com.vaadin:vaadin-server:$vaadinVersion",
+                    "com.vaadin.addon:vaadin-touchkit-agpl:4.0.0.alpha2",
+                    "com.vaadin.addon:vaadin-charts:1.1.1",
+                    "com.vaadin.addon:qrcode:2.0.1",
+                    "com.vaadin:vaadin-client:$vaadinVersion",
+                    "com.vaadin:vaadin-theme-compiler:$vaadinVersion",
+                    "com.vaadin:vaadin-client-compiler:$vaadinVersion",
+                    "com.vaadin:vaadin-testbench:3.0.5",
+                    "org.vaadin.juho:lib-gwt-imageupload:0.0.3"
+            ],
+
+            amazonaws: [
+                    "com.amazonaws:aws-java-sdk:$amazonawsVersion"
+            ],
+
+            resteasy: [
+
+                   //  "org.jboss.resteasy:resteasy-jaxrs:$resteasyVersion",
+                   // "org.jboss.resteasy:resteasy-jaxb-provider:$resteasyVersion",
+                   // "org.jboss.resteasy:jaxrs-api:$resteasyVersion",
+                   // "org.jboss.resteasy:resteasy-client:$resteasyVersion",
+
+                    "org.jboss.resteasy:resteasy-jaxrs:$resteasyVersion",
+                   "org.jboss.resteasy:resteasy-jaxb-provider:$resteasyVersion",
+                   "org.jboss.resteasy:jaxrs-api:$resteasyVersion",
+            ],
+
+            yoga: [
+
+                    "org.skyscreamer:yoga:$yogaVersion",
+                    "org.skyscreamer:yoga-jaxrs:$yogaVersion"
+            ],
+
+            mandrilllutung: [
+                     "com.mandrillapp.wrapper.lutung:lutung:$mandrilllutungVersion"
+            ],
+
+            jmockit: [
+                    "org.jmockit:jmockit:$jmockitVersion",
+            ],
+
+
+            restassured: [
+                    "com.jayway.restassured:rest-assured:$restassuredVersion",
+            ],
+
+            restli: [
+                    "com.linkedin.pegasus:test-util:$restliVersion",
+                    "com.linkedin.pegasus:restli-tools-scala_2.10:$restliVersion",
+                    "com.linkedin.pegasus:restli-tools:$restliVersion",
+                    "com.linkedin.pegasus:restli-spring-bridge:$restliVersion",
+                    "com.linkedin.pegasus:restli-server-testutils:$restliVersion",
+                    "com.linkedin.pegasus:restli-server-standalone:$restliVersion",
+                    "com.linkedin.pegasus:restli-server-extras:$restliVersion",
+                    "com.linkedin.pegasus:restli-server:$restliVersion",
+                    "com.linkedin.pegasus:restli-netty-standalone:$restliVersion",
+                    "com.linkedin.pegasus:restli-int-test-server:$restliVersion",
+                    "com.linkedin.pegasus:restli-int-test-client:$restliVersion",
+                    "com.linkedin.pegasus:restli-int-test-api:$restliVersion",
+                    "com.linkedin.pegasus:restli-int-test:$restliVersion",
+                    "com.linkedin.pegasus:restli-guice-bridge:$restliVersion",
+                    "com.linkedin.pegasus:restli-extras:$restliVersion",
+                    "com.linkedin.pegasus:restli-example-server:$restliVersion",
+                    "com.linkedin.pegasus:restli-example-client:$restliVersion",
+                    "com.linkedin.pegasus:restli-example-api:$restliVersion",
+                    "com.linkedin.pegasus:restli-docgen:$restliVersion",
+                    "com.linkedin.pegasus:restli-contrib-spring:$restliVersion",
+
+            ],
+
+
+
+
+
+
+
           // Ant
           ant: "org.apache.ant:ant:$antVersion",
           ant_junit: "org.apache.ant:ant-junit:$antVersion",
@@ -113,7 +266,7 @@ rootProject.ext {
           // Restlet
           restlet: [
                   "org.restlet.jee:org.restlet:$restletVersion",
-                  "org.restlet.jee:org.restlet.ext.ssl:$restletVersion",
+                 //  "org.restlet.jee:org.restlet.ext.ssl:$restletVersion",
                   "org.restlet.jee:org.restlet.ext.atom:$restletVersion",
                   "org.restlet.jee:org.restlet.ext.servlet:$restletVersion",
                   "org.restlet.jee:org.restlet.ext.slf4j:$restletVersion"
@@ -132,6 +285,9 @@ rootProject.ext {
                   "org.springframework:spring-test:$springVersion"
           ],
 
+            spatial4j: [
+                "com.spatial4j:spatial4j:$spatial4jVersion"
+            ],
           // RDF
           sesame: [ "org.openrdf.sesame:sesame-model:$rdfVersion",
                   "org.openrdf.sesame:sesame-queryparser-sparql:$rdfVersion",
@@ -223,6 +379,7 @@ rootProject.ext {
                   "org.neo4j:neo4j-index:$neoIndexVersion"
           ],
           jta: "javax.transaction:jta:$jtaVersion",
+          jts: "com.vividsolutions:jts:$jtsVersion",
           javaSqlGenerator: "org.java-sql-generator:org.java-sql-generator.api:$javasqlgeneratorVersion",
           javaSqlGeneratorImpl: "org.java-sql-generator:org.java-sql-generator.implementation:$javasqlgeneratorVersion",
           voldemort: "org.immunogenomics.gl.voldemort:voldemort:$voldemortVersion",
@@ -234,6 +391,7 @@ rootProject.ext {
           commons_dbcp: "commons-dbcp:commons-dbcp:$commonsDbcpVersion",
           commons_io: "commons-io:commons-io:$commonsIoVersion",
           commons_lang: "commons-lang:commons-lang:$commonsLangVersion",
+          ctsVersion: "org.orbisgis:cts:$ctsVersion",
           servlet_api: "javax.servlet:javax.servlet-api:$servletVersion",
           cxf_api: 'org.apache.cxf:cxf-api:' + cxfVersion,
           cxf_util: "org.apache.cxf:cxf-common-utilities:$cxfVersion",
@@ -251,6 +409,7 @@ rootProject.ext {
           bouncy_castle: "org.bouncycastle:bcprov-jdk15on:$bouncyVersion",
           dnsjava: "dnsjava:dnsjava:$dnsJavaVersion",
           freemarker: "org.freemarker:freemarker:$freemarkerVersion",
+          geojackson :   "de.grundid.opendatalab:geojson-jackson:$geojsonjacksonVersion",
           shiro: "org.apache.shiro:shiro-core:$shiroVersion",
           shiro_web: "org.apache.shiro:shiro-web:$shiroVersion",
           bonecp: "com.jolbox:bonecp:$bonecpVersion",

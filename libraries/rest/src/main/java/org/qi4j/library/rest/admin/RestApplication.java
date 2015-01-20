@@ -94,7 +94,7 @@ public class RestApplication
         return router;
     }
 
-    private Finder createFinder( Class<? extends ServerResource> resource )
+    public Finder createFinder( Class<? extends ServerResource> resource )
     {
         Finder finder = module.newObject( Finder.class );
         finder.setTargetClass( resource );

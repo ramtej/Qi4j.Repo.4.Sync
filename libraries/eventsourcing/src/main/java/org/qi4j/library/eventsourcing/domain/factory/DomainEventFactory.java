@@ -17,6 +17,7 @@
 
 package org.qi4j.library.eventsourcing.domain.factory;
 
+import org.qi4j.api.common.Optional;
 import org.qi4j.api.entity.EntityComposite;
 import org.qi4j.library.eventsourcing.domain.api.DomainEventValue;
 
@@ -25,5 +26,5 @@ import org.qi4j.library.eventsourcing.domain.api.DomainEventValue;
  */
 public interface DomainEventFactory
 {
-    DomainEventValue createEvent( EntityComposite entity, String name, Object[] args );
+    DomainEventValue createEvent( EntityComposite entity, String name, @Optional Object[] args );
 }

@@ -62,13 +62,15 @@ public interface DomainEventFactoryService
             try
             {
                 JSONWriter params = json.object();
-                for (int i = 0; i < args.length; i++)
-                {
-                    params.key( "param" + i );
-                    if (args[i] == null)
-                        params.value( JSONObject.NULL );
-                    else
-                        params.value( args[i] );
+                if (args != null) {
+                    for (int i = 0; i < args.length; i++)
+                    {
+                        params.key( "param" + i );
+                        if (args[i] == null)
+                            params.value( JSONObject.NULL );
+                        else
+                            params.value( args[i] );
+                    }
                 }
                 json.endObject();
             } catch (JSONException e)

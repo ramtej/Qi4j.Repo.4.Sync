@@ -1,0 +1,39 @@
+description = "Qi4j dependency to 3th-Party Libs"
+
+jar { manifest { name = "Qi4j - 3th-Party Libs" } }
+
+dependencies {
+
+  compile project(":org.qi4j.core:org.qi4j.core.bootstrap")
+  compile project(":org.qi4j.libraries:org.qi4j.library.fileconfig")
+  compile libraries.vaadin
+  compile libraries.amazonaws
+  compile libraries.mandrilllutung
+  compile libraries.resteasy
+  compile libraries.yoga
+  compile libraries.restassured
+  compile libraries.scribe
+  compile libraries.nimbusJoseJWT
+  compile libraries.camel
+
+   compile libraries.jetty_server
+   compile libraries.jetty_servlet
+   // compile libraries.jetty_servlets
+
+   compile libraries.restli
+
+   compile libraries.additional_libs
+
+   // vaadin dependencies
+  // classpath group: 'fi.jasoft.plugin', name: 'gradle-vaadin-plugin', version: '0.6'
+
+
+    testCompile project(":org.qi4j.core:org.qi4j.core.testsupport")
+    testCompile(libraries.easymock)
+    testCompile(libraries.jmockit)
+
+  testRuntime project(":org.qi4j.core:org.qi4j.core.runtime")
+  testRuntime libraries.logback
+
+}
+

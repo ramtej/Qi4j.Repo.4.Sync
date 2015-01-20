@@ -18,11 +18,19 @@
  */
 package org.qi4j.api.query.grammar;
 
+import org.qi4j.api.geometry.TPoint;
+
 /**
  * Query sorting segment.
  */
 public class OrderBy
 {
+
+    /**
+     * Spatial Ordering Centre
+     */
+    private TPoint centre;
+
     /**
      * Order direction.
      */
@@ -78,6 +86,14 @@ public class OrderBy
     public Order order()
     {
         return order;
+    }
+
+    public void setCentre(TPoint centre) {
+        this.centre = centre;
+    }
+
+    public TPoint getCentre() {
+        return centre;
     }
 
     @Override
