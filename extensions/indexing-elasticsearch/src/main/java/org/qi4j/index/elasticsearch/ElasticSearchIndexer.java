@@ -130,7 +130,8 @@ public interface ElasticSearchIndexer
                             LOGGER.trace( "Creating Entity State in Index: {}", changedState );
                             String newJson = toJSON(changedState, newStates, uow );
                             LOGGER.trace( "Will index: {}", newJson );
-                            index( bulkBuilder, changedState.identity().identity(), newJson );
+                            System.out.println("Will index: {} " + newJson );
+                            index(bulkBuilder, changedState.identity().identity(), newJson );
                             break;
                         case LOADED:
                         default:

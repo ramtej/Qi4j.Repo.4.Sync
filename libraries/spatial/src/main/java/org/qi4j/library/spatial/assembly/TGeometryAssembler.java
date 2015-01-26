@@ -42,7 +42,7 @@ public class TGeometryAssembler
             throws AssemblyException
     {
         // internal values
-        module.values(Coordinate.class, TLinearRing.class, TCircle.class, TGeometry.class);
+        module.values(Coordinate.class, TLinearRing.class, TCircle.class, TGeometry.class).visibleIn(visibility());
         // API values
         module.values(
                 TCRS.class,
@@ -53,7 +53,7 @@ public class TGeometryAssembler
                 TPolygon.class,
                 TMultiPolygon.class,
                 TFeature.class,
-                TFeatureCollection.class);
+                TFeatureCollection.class).visibleIn(visibility());
 
         TGeometry tGeometry = module.forMixin(TGeometry.class).declareDefaults();
         tGeometry.CRS().set(DEFAULT_CRS);

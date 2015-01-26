@@ -54,6 +54,7 @@ public class ESMemorySupport
         configuration.refresh();
         ElasticSearchConfiguration config = configuration.get();
 
+
         String clusterName = config.clusterName().get() == null ? DEFAULT_CLUSTER_NAME : config.clusterName().get();
         index = config.index().get() == null ? DEFAULT_INDEX_NAME : config.index().get();
         indexNonAggregatedAssociations = config.indexNonAggregatedAssociations().get();
