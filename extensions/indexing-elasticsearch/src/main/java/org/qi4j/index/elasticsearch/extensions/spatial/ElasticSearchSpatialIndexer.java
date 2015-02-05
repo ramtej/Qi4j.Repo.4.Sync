@@ -80,33 +80,33 @@ public final class ElasticSearchSpatialIndexer
             {
                 if (IndexMappingCache.isMappedAsGeoPoint(support.index(), support.entitiesType(), deepProperty))
                 {
-                    createIndexPointAsGeoPointType(property, json, (TPoint) geometry);
+                    createIndexPointAsGeoPointType(property, json, (TPoint) geometry); return;
                 } else if (IndexMappingCache.isMappedAsGeoShape(support.index(), support.entitiesType(), deepProperty))
                 {
-                    createIndexPointAsGeoShapeType(property, json, (TPoint) geometry);
+                    createIndexPointAsGeoShapeType(property, json, (TPoint) geometry); return;
                 } else
                     new ElasticSearchIndexException("No spatial mapping for property " + deepProperty + " available.");
             } else if (geometry.isMultiPoint())
             {
-                createIndexMultiPoint(property, json, (TMultiPoint) geometry);
+                createIndexMultiPoint(property, json, (TMultiPoint) geometry); return;
             } else if (geometry.isLineString())
             {
-                createIndexLineString(property, json, (TLineString) geometry);
+                createIndexLineString(property, json, (TLineString) geometry); return;
             } else if (geometry.isMultiLineString())
             {
-                createIndexMultiLineString(property, json, (TMultiLineString) geometry);
+                createIndexMultiLineString(property, json, (TMultiLineString) geometry); return;
             } else if (geometry.isPolygon())
             {
-                createIndexPolygon(property, json, (TPolygon) geometry);
+                createIndexPolygon(property, json, (TPolygon) geometry); return;
             } else if (geometry.isMultiPolygon())
             {
-                createIndexMultiPolygon(property, json, (TMultiPolygon) geometry);
+                createIndexMultiPolygon(property, json, (TMultiPolygon) geometry); return;
             } else if (geometry.isFeature())
             {
-                createIndexFeature(property, json, (TFeature) geometry);
+                createIndexFeature(property, json, (TFeature) geometry); return;
             } else if (geometry.isFeatureCollection())
             {
-                createIndexFeatureCollection(property, json, (TFeatureCollection) geometry);
+                createIndexFeatureCollection(property, json, (TFeatureCollection) geometry); return;
             } else new ElasticSearchIndexException("Unsupported Geometry : " + geometry.getClass());
 
         } catch (JSONException _ex)

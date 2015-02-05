@@ -226,6 +226,7 @@ public interface ElasticSearchIndexer
                         //     "distance" : "10.0km"
                         if (ValueType.isGeometricValue(value) )
                         {
+                            System.out.println("Spatial Indexing");
                             if (mKey != null)
                             {
                                 deepSpatialMappingKeyStack.add(mKey);
